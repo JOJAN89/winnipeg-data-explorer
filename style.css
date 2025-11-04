@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-  background-color: #004d40;
+  background-color: #962540;
 }
 
 /* Table styling */
@@ -89,7 +89,7 @@ tr:nth-child(even) {
 /* Footer */
 footer {
   background: #004d40;
-  color: #fff;
+  color: #ffffffbf;
   text-align: center;
   padding: 1rem;
 }
