@@ -1,25 +1,37 @@
+// Winnipeg Tree Finder
+// Author: Jojanpreet Kaur
+// Version: 1.0.0
+
 document.querySelector("#searchForm").addEventListener("submit", async (event) => {
   event.preventDefault();
+
   const commonName = document.querySelector("#commonNameInput").value.trim();
   const statusMessage = document.querySelector("#statusMessage");
   const tableBody = document.querySelector("#resultsTable tbody");
+
   tableBody.innerHTML = "";
   statusMessage.textContent = "Loading...";
 
+  if (!commonName) {
+    statusMessage.textContent = "Please enter a tree name.";
+    return;
+  }
+
   const apiUrl = `https://data.winnipeg.ca/resource/d3jk-hb6j.json?` +
-                 `$where=lower(common_name) LIKE lower('%${commonName}%')` +
-                 `&$order=diameter_at_breast_height DESC` +
-                 `&$limit=100`;
+    `$where=lower(common_name) LIKE lower('%${commonName}%')` +
+    `&$order=diameter_at_breast_height DESC` +
+    `&$limit=100`;
 
   const encodedURL = encodeURI(apiUrl);
 
   try {
     const response = await fetch(encodedURL);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) throw new Error(`Network error: ${response.status}`);
 
     const data = await response.json();
+
     if (data.length === 0) {
-      statusMessage.textContent = "No trees found.";
+      statusMessage.textContent = "No trees found for that name.";
       return;
     }
 
@@ -32,10 +44,11 @@ document.querySelector("#searchForm").addEventListener("submit", async (event) =
       `;
       tableBody.appendChild(row);
     });
-    statusMessage.textContent = `${data.length} results found.`;
+
+    statusMessage.textContent = `${data.length} result(s) found.`;
 
   } catch (error) {
     console.error(error);
-    statusMessage.textContent = "Error loading data. Please try again later.";
+    statusMessage.textContent = "Error loading data. Please try again.";
   }
 });
