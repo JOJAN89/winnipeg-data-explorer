@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winnipeg Tree Search</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winnipeg Tree Finder</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Search for Winnipeg Trees</h1>
-  <form id="searchForm">
-    <input type="text" id="commonNameInput" placeholder="Enter tree name..." required>
-    <button type="submit">Search</button>
-  </form>
+  <header>
+    <h1>🌳 Winnipeg Tree Finder</h1>
+    <p>Search the City of Winnipeg’s Open Data for trees by their common name.</p>
+  </header>
 
-  <p id="statusMessage"></p>
-  <table id="resultsTable">
-    <thead>
-      <tr><th>Common Name</th><th>Scientific Name</th><th>Diameter (cm)</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <main>
+    <form id="searchForm" aria-label="Tree search form">
+      <label for="commonNameInput">Enter tree name:</label>
+      <input type="text" id="commonNameInput" placeholder="e.g., Ash, Oak, Maple" required aria-required="true" />
+      <button type="submit">Search</button>
+    </form>
+
+    <p id="statusMessage" role="status"></p>
+
+    <section aria-label="Search results">
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <th scope="col">Common Name</th>
+            <th scope="col">Scientific Name</th>
+            <th scope="col">Diameter (cm)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data source: <a href="https://data.winnipeg.ca/" target="_blank" rel="noopener">City of Winnipeg Open Data Portal</a></p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
