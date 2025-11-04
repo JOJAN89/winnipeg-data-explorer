@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winnipeg Tree Search</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Search for Winnipeg Trees</h1>
+  <form id="searchForm">
+    <input type="text" id="commonNameInput" placeholder="Enter tree name..." required>
+    <button type="submit">Search</button>
+  </form>
+
+  <p id="statusMessage"></p>
+  <table id="resultsTable">
+    <thead>
+      <tr><th>Common Name</th><th>Scientific Name</th><th>Diameter (cm)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
